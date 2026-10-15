@@ -43,6 +43,7 @@
   --color-slate: #2b3036;
   --color-bg-dark: #0b0c0e;
   --color-bg-light: #b8b8b8;
+  --color-cream-muted: rgba(253, 255, 240, 0.55);
 
   /* Tipografía */
   --font-main: "Poppins", system-ui, sans-serif;
@@ -60,6 +61,7 @@
   --btn-primary-text: var(--color-ink);
   --btn-secondary-bg: var(--color-black);
   --btn-secondary-text: var(--color-cream);
+  --btn-secondary-border: rgba(253, 255, 240, 0.28);
   --btn-tracking: 0.08em;
   --btn-font: 0.95rem;
 
