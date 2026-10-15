@@ -1,0 +1,36 @@
+{
+  "$schema": "./links.schema.json",
+  "profile": {
+    "name": "ONCE Sports"
+  },
+  "links": [
+    {
+      "id": "tienda",
+      "label": "Tienda online",
+      "url": "[URL_TIENDA]",
+      "featured": true,
+      "enabled": true
+    },
+    {
+      "id": "whatsapp",
+      "label": "WhatsApp",
+      "url": "https://wa.me/59157393927?text=Hola%20ONCE%20Sports%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n",
+      "featured": false,
+      "enabled": true
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/oncesports.bol/",
+      "featured": false,
+      "enabled": true
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@once.sports",
+      "featured": false,
+      "enabled": true
+    }
+  ]
+}

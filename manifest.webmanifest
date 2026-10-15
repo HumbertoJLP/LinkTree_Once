@@ -1,0 +1,20 @@
+{
+  "name": "ONCE Sports",
+  "short_name": "ONCE",
+  "description": "Todos los enlaces de ONCE Sports en un solo lugar: tienda online, WhatsApp, Instagram y TikTok.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0c0e",
+  "theme_color": "#0b0c0e",
+  "icons": [
+    {
+      "src": "assets/img/logo.png",
+      "sizes": "2000x2000",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

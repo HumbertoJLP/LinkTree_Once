@@ -1,0 +1,32 @@
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependencias (el proyecto no las usa; se ignora por seguridad)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Variables de entorno y secretos
+.env
+.env.*
+
+# Registros y temporales
+*.log
+*.tmp
+
+# Salidas de servidores y build locales
+.cache/
+_site/
+dist/
