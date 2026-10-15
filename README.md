@@ -55,10 +55,16 @@ Coloca `poppins-500.woff2`, `poppins-700.woff2` y `poppins-800.woff2` en
 
 ## Despliegue
 
-Publicado con GitHub Pages desde la rama `dev`:
+`dev` es la rama de desarrollo; `main` es **producción** y la que publica GitHub Pages.
 
 1. Repositorio → **Settings** → **Pages**.
-2. Source: **Deploy from a branch** → rama `dev` → carpeta `/ (root)`.
+2. Source: **Deploy from a branch** → rama `main` → carpeta `/ (root)`.
+
+Para publicar cambios, integra `dev` en `main`:
+
+```bash
+git checkout main && git merge dev && git push origin main
+```
 
 ## Licencia
 
