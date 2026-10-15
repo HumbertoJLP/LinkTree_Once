@@ -94,7 +94,7 @@ svg {
 }
 
 .masthead__title--accent {
-  color: var(--color-slate);
+  color: var(--color-cream-muted);
 }
 
 .masthead__logo {
@@ -167,6 +167,7 @@ svg {
 }
 
 .btn--secondary {
+  border: 1px solid var(--btn-secondary-border);
   background-color: var(--btn-secondary-bg);
   color: var(--btn-secondary-text);
   font-weight: 500;
