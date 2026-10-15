@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://humbertojlp.github.io/LinkTree_Once/sitemap.xml

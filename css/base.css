@@ -1,0 +1,352 @@
+/* ==========================================================================
+   ONCE Sports — base.css
+   Reset, layout y componentes (solo usando variables del tema)
+   Mobile first: estilos base sin media queries, ajustes con min-width
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-main);
+  font-weight: 500;
+  background-color: var(--color-bg-dark);
+  color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Página (móvil: pantalla completa vertical / ordenador: pantalla completa)
+   -------------------------------------------------------------------------- */
+
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background-color: var(--color-bg-dark);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Panel central: header (logo + titular) encima de los botones
+   -------------------------------------------------------------------------- */
+
+.panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--page-padding);
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Header: titular + logo
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--page-padding);
+}
+
+.masthead__title {
+  font-size: var(--title-size);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+}
+
+.masthead__title--accent {
+  color: var(--color-slate);
+}
+
+.masthead__logo {
+  flex: 0 0 auto;
+  width: var(--logo-size);
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Zona de enlaces (botones: fase 3)
+   -------------------------------------------------------------------------- */
+
+#links {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--button-gap);
+  width: var(--content-width);
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Botones
+   -------------------------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  min-height: var(--button-height);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-button);
+  font-family: var(--font-main);
+  font-size: var(--btn-font);
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: var(--btn-tracking);
+  transition: transform 150ms ease, background-color 150ms ease,
+    box-shadow 150ms ease, color 150ms ease;
+  animation: btn-in 320ms ease backwards;
+}
+
+#links .btn:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+#links .btn:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+#links .btn:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+#links .btn:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.btn--primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn--secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  font-weight: 500;
+}
+
+.btn--secondary::before {
+  content: "/\00a0";
+  display: inline-block;
+  transition: transform 150ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--secondary:hover::before {
+  transform: translateX(4px);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+/* Barrido de brillo en el botón destacado */
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.btn--primary:hover::after {
+  animation: btn-sheen 650ms ease;
+}
+
+@keyframes btn-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes btn-sheen {
+  from {
+    transform: translateX(0) skewX(-20deg);
+  }
+  to {
+    transform: translateX(360%) skewX(-20deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    animation: none;
+    transition: none;
+  }
+
+  .btn--primary:hover::after {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   "ONCE" gigante decorativo
+   -------------------------------------------------------------------------- */
+
+.once-giant {
+  align-self: center;
+  margin-top: var(--page-padding);
+  margin-bottom: -0.12em;
+  font-size: var(--giant-size);
+  font-weight: 800;
+  line-height: 0.75;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Pie de página
+   -------------------------------------------------------------------------- */
+
+.footer {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--page-padding) var(--page-padding);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--color-bg-light);
+}
+
+.footer a {
+  color: var(--color-cream);
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Página legal (aviso de privacidad)
+   -------------------------------------------------------------------------- */
+
+.legal {
+  max-width: 64ch;
+  margin-inline: auto;
+  padding: clamp(2rem, 8vh, 5rem) var(--page-padding);
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--color-cream);
+}
+
+.legal__back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: var(--color-cream);
+  text-underline-offset: 3px;
+}
+
+.legal h1 {
+  margin-bottom: 0.4em;
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.legal h2 {
+  margin: 1.6em 0 0.4em;
+  font-size: clamp(1.05rem, 3.5vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.legal p,
+.legal ul {
+  margin-bottom: 1em;
+}
+
+.legal ul {
+  padding-left: 1.3em;
+}
+
+.legal a {
+  color: var(--color-cream);
+  text-underline-offset: 3px;
+}
+
+.legal small {
+  color: var(--color-bg-light);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive (pantallas grandes)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  #links {
+    width: var(--content-max);
+    max-width: 90%;
+  }
+}

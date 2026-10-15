@@ -1,0 +1,66 @@
+# Contexto
+Proyecto "link in bio" para ONCE Sports (open source, GitHub Pages). Stack: HTML5, CSS3 y JavaScript vanilla. Sin frameworks, sin bundlers, sin package.json, sin dependencias. La estructura de carpetas ya existe (fase 1). Enfoque **mobile first**: diseño base para ~390px de ancho, y pantallas grandes con `min-width` media queries.
+
+# Tarea (FASE 2: base visual, SIN botones)
+Escribe el contenido de `index.html`, `css/base.css` y `css/themes/default.css` para construir la parte visual base del diseño. Usa la imagen de referencia `docs/referencia.png` como guía visual. Los botones y `links.json`/`app.js` se harán en fases posteriores, así que NO los implementes todavía.
+
+# Assets disponibles
+- `assets/img/bg.webp`: fondo degradado con grano (1080x1920).
+- `assets/img/logo.svg`: logo ONCE Sports (fondo transparente).
+- `assets/fonts/poppins-500.woff2`, `poppins-700.woff2`, `poppins-800.woff2`.
+- No se usa imagen de garabatos. Ignora los trazos negros de la referencia.
+
+Si algún archivo no existe, usa un placeholder simple y avísame al final.
+
+# Tokens de diseño (en `css/themes/default.css`, dentro de `:root`)
+```css
+:root {
+  --color-cream: #fdfff0;
+  --color-black: #000000;
+  --color-ink: #0a0a0a;
+  --color-slate: #2b3036;
+  --color-bg-dark: #0b0c0e;
+  --color-bg-light: #b8b8b8;
+
+  --font-main: "Poppins", system-ui, sans-serif;
+
+  --radius-button: 16px;
+  --button-height: 48px;
+  --button-gap: 14px;
+  --content-width: 80%;
+}
+```
+Define también en este archivo los tokens de los botones (fondo, texto, tracking) para usarlos en la fase 3.
+
+# Fuentes
+- Declara con `@font-face` los 3 pesos de Poppins (500, 700, 800), `font-display: swap`, formato woff2, rutas relativas a `assets/fonts/`.
+- Precarga con `<link rel="preload">` solo el peso 800 (se usa en el titular).
+
+# Layout y elementos (index.html + base.css)
+Formato vertical 9:16. Estructura semántica: `<main>` con `<header>` (titular + logo), una zona vacía `<nav id="links" aria-label="Enlaces">` reservada para los botones, y el "ONCE" gigante decorativo.
+
+1. **Fondo:** `bg.webp` con `background-size: cover`, centrado, sobre color `--color-bg-dark` de respaldo. Usa `min-height: 100dvh` (con fallback `100vh`).
+2. **Titular** (arriba a la izquierda): "EVERY JERSEY TELLS A STORY." en 4 líneas (EVERY / JERSEY / TELLS A / STORY.).
+   - "EVERY JERSEY TELLS" en `--color-cream`; "A STORY." en `--color-slate`.
+   - Poppins 800, mayúsculas, `font-size: clamp(2.5rem, 12vw, 3.5rem)`, `line-height: 0.9`, `letter-spacing: -0.02em`.
+   - Es un `<h1>` real, no una imagen.
+3. **Logo** (arriba a la derecha): `logo.svg` con `alt="ONCE Sports"`, ancho aprox. 22-25% del ancho de pantalla, con `width` y `height` definidos para evitar saltos de layout.
+4. **Zona de enlaces:** contenedor centrado vertical y horizontalmente en la parte media, ancho `--content-width`, `display: flex; flex-direction: column; gap: var(--button-gap)`. Déjalo vacío con un comentario.
+5. **"ONCE" gigante** (abajo): texto decorativo, Poppins 800, color `--color-slate`, tamaño ~`38vw`, recortado por el borde inferior (`overflow: hidden` en el contenedor y posicionamiento absoluto abajo), con `aria-hidden="true"` y `pointer-events: none`. Debe quedar detrás de los botones (`z-index`).
+
+# Responsive (después del diseño móvil)
+- Móvil (base): todo ocupa la pantalla completa.
+- `@media (min-width: 768px)`: columna centrada de `max-width: 480px` con relación de aspecto cercana a 9:16, el resto de la pantalla en `--color-bg-dark`.
+- Respeta `prefers-reduced-motion` (sin animaciones en esta fase).
+
+# Reglas
+- Separación estricta: `base.css` contiene reset, layout y componentes usando variables; `themes/default.css` contiene solo tokens, `@font-face` y valores visuales.
+- `index.html`: `lang="es"`, charset UTF-8, viewport `width=device-width, initial-scale=1`, `<title>ONCE Sports</title>`, enlaza `base.css` y luego `themes/default.css`. Aún sin SEO completo ni PWA (fases posteriores).
+- Sin JavaScript en esta fase. Sin librerías de iconos. Sin fuentes externas por CDN.
+- CSS mobile first: estilos base sin media query, ajustes con `min-width`.
+- No crees ni modifiques archivos fuera de `index.html`, `css/base.css` y `css/themes/default.css`.
+
+# Proceso
+1. Muéstrame primero el plan (qué hará cada archivo) y espera mi confirmación.
+2. Escribe el código.
+3. Al terminar, dime qué assets faltaron y cómo ver el resultado en local (`python3 -m http.server 8000`). No hagas commit.

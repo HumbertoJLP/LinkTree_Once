@@ -1,0 +1,65 @@
+# Contexto
+Proyecto "link in bio" para ONCE Sports (open source, GitHub Pages). Stack: HTML5, CSS3 y JavaScript vanilla (ES modules). Sin frameworks, sin bundlers, sin package.json, sin dependencias. Las fases 1 (estructura) y 2 (base visual) ya están hechas. Enfoque **mobile first**. Usa `docs/referencia.png` como guía visual de los botones.
+
+# Tarea (FASE 3: botones y enlaces)
+Implementa los 4 botones, alimentados desde `links.json` y renderizados con `js/app.js` dentro de `<nav id="links">`. Modifica solo estos archivos: `links.json`, `links.schema.json`, `js/app.js`, `index.html`, `css/base.css` y `css/themes/default.css`.
+
+# Enlaces (en este orden)
+1. **Tienda online** (destacado): [URL_TIENDA]
+2. **WhatsApp**: https://wa.me/591[NUMERO]?text=Hola%20ONCE%20Sports%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n
+3. **Instagram**: https://www.instagram.com/oncesports.bol/
+4. **TikTok**: https://www.tiktok.com/@once.sports
+
+# links.json (única fuente de verdad)
+Estructura:
+```json
+{
+  "profile": { "name": "ONCE Sports" },
+  "links": [
+    { "id": "tienda", "label": "Tienda online", "url": "...", "featured": true, "enabled": true },
+    { "id": "whatsapp", "label": "WhatsApp", "url": "...", "featured": false, "enabled": true }
+  ]
+}
+```
+- Los 4 enlaces con las URLs de arriba. `enabled: false` oculta un enlace sin borrarlo.
+- Crea `links.schema.json` (JSON Schema draft 2020-12) que valide: `id` y `label` obligatorios, `url` con formato https, `featured` y `enabled` booleanos.
+
+# js/app.js
+- ES module cargado con `<script type="module" src="js/app.js">`.
+- Hace `fetch("links.json")`, filtra los `enabled`, y crea los botones dentro de `#links` con `createElement` (nunca `innerHTML` con datos del JSON).
+- Cada botón es un `<a>` con `href`, `target="_blank"` y `rel="noopener noreferrer"`.
+- El enlace con `featured: true` recibe la clase `btn btn--primary`; los demás `btn btn--secondary`.
+- Manejo de errores: si el fetch falla, deja el contenido del `<noscript>`/fallback visible y registra el error en consola.
+- Menos de 60 líneas, comentarios breves, sin librerías.
+
+# Fallback sin JavaScript
+En `index.html`, dentro de `#links`, incluye un `<noscript>` con los 4 enlaces estáticos usando las mismas clases (`btn btn--primary` / `btn btn--secondary`), para que la página funcione aunque falle JS o el JSON.
+
+# Estilos de botones
+En `css/themes/default.css` define los tokens (si no existen):
+```css
+--btn-primary-bg: var(--color-cream);
+--btn-primary-text: var(--color-ink);
+--btn-secondary-bg: var(--color-black);
+--btn-secondary-text: var(--color-cream);
+--btn-tracking: 0.08em;
+```
+En `css/base.css` (usando solo variables):
+- `.btn`: `display: flex; align-items: center; justify-content: center;`, `min-height: var(--button-height)` (mínimo 48px táctiles), `border-radius: var(--radius-button)`, Poppins, mayúsculas, `letter-spacing: var(--btn-tracking)`, `text-decoration: none`, `width: 100%`.
+- `.btn--primary`: fondo crema, texto negro, peso 700.
+- `.btn--secondary`: fondo negro, texto crema, peso 500, y el texto lleva el prefijo `/ ` mediante `::before { content: "/\00a0"; }`.
+- Estados: `:hover` (ligera elevación con `transform: translateY(-2px)`), `:active` (vuelve a su posición), `:focus-visible` (outline de 3px en crema con offset de 3px).
+- Transiciones de 150ms, desactivadas con `@media (prefers-reduced-motion: reduce)`.
+- Los botones deben quedar por encima del "ONCE" gigante (`z-index`).
+
+# Reglas
+- Mobile first, sin JavaScript fuera de `app.js`, sin dependencias, sin CDN.
+- No uses `innerHTML` con datos externos.
+- Todo el texto de la interfaz en español.
+- No toques SEO, PWA, CI ni documentación (fases posteriores). No hagas commit.
+
+# Proceso
+1. Muéstrame primero el plan y espera mi confirmación.
+2. Escribe el código.
+3. Al terminar, valida que `links.json` cumple el schema y dime cómo probarlo en local (`python3 -m http.server 8000`, porque `fetch` no funciona con `file://`).
+4. Lista qué debo reemplazar manualmente (`[URL_TIENDA]` y `[NUMERO]` si quedaron como placeholder).

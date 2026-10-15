@@ -1,0 +1,88 @@
+/* ==========================================================================
+   ONCE Sports — themes/default.css
+   Solo tokens de diseño, @font-face y valores visuales.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fuentes (Poppins 500 / 700 / 800)
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../../assets/fonts/poppins-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../../assets/fonts/poppins-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../../assets/fonts/poppins-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Colores */
+  --color-cream: #fdfff0;
+  --color-black: #000000;
+  --color-ink: #0a0a0a;
+  --color-slate: #2b3036;
+  --color-bg-dark: #0b0c0e;
+  --color-bg-light: #b8b8b8;
+
+  /* Tipografía */
+  --font-main: "Poppins", system-ui, sans-serif;
+
+  /* Layout */
+  --radius-button: 16px;
+  --button-height: 48px;
+  --button-gap: 14px;
+  --content-width: 80%;
+  --content-max: 34rem;
+  --page-padding: clamp(1.25rem, 6vw, 2.5rem);
+
+  /* Botones */
+  --btn-primary-bg: var(--color-cream);
+  --btn-primary-text: var(--color-ink);
+  --btn-secondary-bg: var(--color-black);
+  --btn-secondary-text: var(--color-cream);
+  --btn-tracking: 0.08em;
+  --btn-font: 0.95rem;
+
+  /* Valores visuales (vw = ancho de la columna .page) */
+  --bg-image: url("../../assets/img/bg.jpg");
+  --title-size: clamp(1.75rem, 9vw, 3.5rem);
+  --logo-size: calc(var(--title-size) * 5.5);
+  --giant-size: 38vw;
+}
+
+/* --------------------------------------------------------------------------
+   Modo ordenador (pantalla completa)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  :root {
+    --page-padding: clamp(2rem, 4vh, 4rem);
+    --title-size: clamp(3rem, 5.25vw, 8rem);
+    --logo-size: calc(var(--title-size) * 3.5);
+    --giant-size: min(38vw, 32vh);
+    --button-height: clamp(3.5rem, 6.5vh, 5rem);
+    --button-gap: clamp(1rem, 2vh, 1.5rem);
+    --content-max: 44rem;
+    --btn-font: clamp(1.1rem, 1.8vh, 1.4rem);
+  }
+}
