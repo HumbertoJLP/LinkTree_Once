@@ -66,10 +66,17 @@
   --btn-font: 0.95rem;
 
   /* Valores visuales (vw = ancho de la columna .page) */
-  --bg-image: url("../../assets/img/bg.jpg");
   --title-size: clamp(1.75rem, 9vw, 3.5rem);
   --logo-size: calc(var(--title-size) * 5.5);
   --giant-size: 38vw;
+
+  /* Animaciones */
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+  --dur-line: 650ms;
+  --dur-logo: 700ms;
+  --dur-giant: 900ms;
+  --dur-fade: 600ms;
 }
 
 /* --------------------------------------------------------------------------
