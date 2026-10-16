@@ -50,10 +50,22 @@ svg {
   min-height: 100dvh;
   overflow: hidden;
   background-color: var(--color-bg-dark);
-  background-image: var(--bg-image);
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  top: -4%;
+  right: -4%;
+  bottom: -4%;
+  left: -4%;
+  z-index: 0;
+  background-image: url("../assets/img/bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  pointer-events: none;
+  animation: ken-burns 40s var(--ease-in-out) infinite alternate;
 }
 
 /* --------------------------------------------------------------------------
@@ -93,6 +105,34 @@ svg {
   color: var(--color-cream);
 }
 
+.masthead__line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em;
+  margin-block: -0.06em;
+}
+
+.masthead__line-inner {
+  display: block;
+  animation: line-reveal var(--dur-line) var(--ease-out-quart) backwards;
+}
+
+.masthead__line:nth-child(1) .masthead__line-inner {
+  animation-delay: 0ms;
+}
+
+.masthead__line:nth-child(2) .masthead__line-inner {
+  animation-delay: 90ms;
+}
+
+.masthead__line:nth-child(3) .masthead__line-inner {
+  animation-delay: 180ms;
+}
+
+.masthead__line:nth-child(4) .masthead__line-inner {
+  animation-delay: 270ms;
+}
+
 .masthead__title--accent {
   color: var(--color-cream-muted);
 }
@@ -101,6 +141,7 @@ svg {
   flex: 0 0 auto;
   width: var(--logo-size);
   height: auto;
+  animation: logo-in var(--dur-logo) var(--ease-out-quart) 400ms backwards;
 }
 
 /* --------------------------------------------------------------------------
@@ -144,19 +185,19 @@ svg {
 }
 
 #links .btn:nth-child(1) {
-  animation-delay: 0ms;
+  animation-delay: 550ms;
 }
 
 #links .btn:nth-child(2) {
-  animation-delay: 70ms;
+  animation-delay: 620ms;
 }
 
 #links .btn:nth-child(3) {
-  animation-delay: 140ms;
+  animation-delay: 690ms;
 }
 
 #links .btn:nth-child(4) {
-  animation-delay: 210ms;
+  animation-delay: 760ms;
 }
 
 .btn--primary {
@@ -238,14 +279,47 @@ svg {
   }
 }
 
+@keyframes line-reveal {
+  from {
+    transform: translateY(115%);
+  }
+}
+
+@keyframes logo-in {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+}
+
+@keyframes giant-in {
+  from {
+    transform: translateY(18%);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.08) translate(-1.5%, -1%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .btn {
+  *,
+  *::before,
+  *::after {
     animation: none;
     transition: none;
-  }
-
-  .btn--primary:hover::after {
-    animation: none;
   }
 }
 
@@ -254,6 +328,8 @@ svg {
    -------------------------------------------------------------------------- */
 
 .once-giant {
+  position: relative;
+  z-index: 1;
   align-self: center;
   margin-top: var(--page-padding);
   margin-bottom: -0.12em;
@@ -265,6 +341,7 @@ svg {
   color: var(--color-slate);
   pointer-events: none;
   user-select: none;
+  animation: giant-in var(--dur-giant) var(--ease-out-quart) 750ms backwards;
 }
 
 /* --------------------------------------------------------------------------
@@ -279,6 +356,7 @@ svg {
   letter-spacing: 0.02em;
   text-align: center;
   color: var(--color-bg-light);
+  animation: fade-in var(--dur-fade) ease 900ms backwards;
 }
 
 .footer a {
