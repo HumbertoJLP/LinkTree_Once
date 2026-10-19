@@ -20,10 +20,12 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  background-color: var(--color-bg-dark);
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-main);
   font-weight: 500;
   background-color: var(--color-bg-dark);
@@ -52,9 +54,24 @@ svg {
   background-color: var(--color-bg-dark);
 }
 
+@supports not (height: 100dvh) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+  }
+
+  .page {
+    min-height: 100%;
+  }
+}
+
 .page::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: -4%;
   right: -4%;
   bottom: -4%;
@@ -65,7 +82,8 @@ svg {
   background-position: center;
   background-repeat: no-repeat;
   pointer-events: none;
-  animation: ken-burns 40s var(--ease-in-out) infinite alternate;
+  will-change: transform;
+  animation: ken-burns 45s var(--ease-in-out) infinite alternate;
 }
 
 /* --------------------------------------------------------------------------
@@ -108,13 +126,13 @@ svg {
 .masthead__line {
   display: block;
   overflow: hidden;
-  padding-block: 0.06em;
-  margin-block: -0.06em;
+  padding-block: 0.08em;
+  margin-block: -0.08em;
 }
 
 .masthead__line-inner {
   display: block;
-  animation: line-reveal var(--dur-line) var(--ease-out-quart) backwards;
+  animation: line-reveal var(--dur-title) var(--ease-out) backwards;
 }
 
 .masthead__line:nth-child(1) .masthead__line-inner {
@@ -122,15 +140,15 @@ svg {
 }
 
 .masthead__line:nth-child(2) .masthead__line-inner {
-  animation-delay: 90ms;
+  animation-delay: 70ms;
 }
 
 .masthead__line:nth-child(3) .masthead__line-inner {
-  animation-delay: 180ms;
+  animation-delay: 140ms;
 }
 
 .masthead__line:nth-child(4) .masthead__line-inner {
-  animation-delay: 270ms;
+  animation-delay: 210ms;
 }
 
 .masthead__title--accent {
@@ -141,7 +159,7 @@ svg {
   flex: 0 0 auto;
   width: var(--logo-size);
   height: auto;
-  animation: logo-in var(--dur-logo) var(--ease-out-quart) 400ms backwards;
+  animation: logo-in var(--dur-logo) var(--ease-out) 250ms backwards;
 }
 
 /* --------------------------------------------------------------------------
@@ -179,25 +197,26 @@ svg {
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: var(--btn-tracking);
-  transition: transform 150ms ease, background-color 150ms ease,
-    box-shadow 150ms ease, color 150ms ease;
-  animation: btn-in 320ms ease backwards;
+  transition: transform 200ms var(--ease-out),
+    background-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out),
+    color 200ms var(--ease-out);
+  animation: btn-in var(--dur-btn) var(--ease-out) backwards;
 }
 
 #links .btn:nth-child(1) {
-  animation-delay: 550ms;
+  animation-delay: 350ms;
 }
 
 #links .btn:nth-child(2) {
-  animation-delay: 620ms;
+  animation-delay: 415ms;
 }
 
 #links .btn:nth-child(3) {
-  animation-delay: 690ms;
+  animation-delay: 480ms;
 }
 
 #links .btn:nth-child(4) {
-  animation-delay: 760ms;
+  animation-delay: 545ms;
 }
 
 .btn--primary {
@@ -217,7 +236,7 @@ svg {
 .btn--secondary::before {
   content: "/\00a0";
   display: inline-block;
-  transition: transform 150ms ease;
+  transition: transform 200ms var(--ease-out);
 }
 
 .btn:hover {
@@ -260,13 +279,13 @@ svg {
 }
 
 .btn--primary:hover::after {
-  animation: btn-sheen 650ms ease;
+  animation: btn-sheen 700ms var(--ease-out);
 }
 
 @keyframes btn-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px);
   }
 }
 
@@ -287,15 +306,15 @@ svg {
 
 @keyframes logo-in {
   from {
-    transform: scale(0.92);
     opacity: 0;
+    transform: scale(0.96) translateY(6px);
   }
 }
 
 @keyframes giant-in {
   from {
-    transform: translateY(18%);
     opacity: 0;
+    transform: translateY(14%);
   }
 }
 
@@ -307,7 +326,7 @@ svg {
 
 @keyframes ken-burns {
   from {
-    transform: scale(1) translate(0, 0);
+    transform: scale(1.02) translate(0, 0);
   }
   to {
     transform: scale(1.08) translate(-1.5%, -1%);
@@ -341,7 +360,7 @@ svg {
   color: var(--color-slate);
   pointer-events: none;
   user-select: none;
-  animation: giant-in var(--dur-giant) var(--ease-out-quart) 750ms backwards;
+  animation: giant-in var(--dur-giant) var(--ease-out) 600ms backwards;
 }
 
 /* --------------------------------------------------------------------------
@@ -356,7 +375,7 @@ svg {
   letter-spacing: 0.02em;
   text-align: center;
   color: var(--color-bg-light);
-  animation: fade-in var(--dur-fade) ease 900ms backwards;
+  animation: fade-in var(--dur-fade) var(--ease-out) 750ms backwards;
 }
 
 .footer a {

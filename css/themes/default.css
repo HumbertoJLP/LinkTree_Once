@@ -71,12 +71,13 @@
   --giant-size: 38vw;
 
   /* Animaciones */
-  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: ease-in-out;
-  --dur-line: 650ms;
-  --dur-logo: 700ms;
-  --dur-giant: 900ms;
-  --dur-fade: 600ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --dur-title: 700ms;
+  --dur-logo: 800ms;
+  --dur-btn: 550ms;
+  --dur-giant: 1000ms;
+  --dur-fade: 700ms;
 }
 
 /* --------------------------------------------------------------------------
