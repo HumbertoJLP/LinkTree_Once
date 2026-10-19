@@ -9,7 +9,7 @@
       "label": "Tienda online",
       "url": "[URL_TIENDA]",
       "featured": true,
-      "enabled": true
+      "enabled": false
     },
     {
       "id": "whatsapp",
